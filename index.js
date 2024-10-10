@@ -17,11 +17,7 @@ const MainBank = require('./model/offen/index-mongo.js')
 app.use(helmet({ contentSecurityPolicy: false }))
 
 app.use(
-    cors({
-        origin: "http://localhost:3000",
-        methods: ["POST", "GET"],
-        credentials: true,
-    })
+    cors()
 )
 
 const server = http.createServer(app)
@@ -38,7 +34,9 @@ app.post('/logout', (req, res) => {
     req.session.token = null
     return res.status(200).json({status: true})
 })
+
 app.use(express.static('./ims/'))
+app.use(express.static('./build/'))
 async function main() {
     try {
 
@@ -78,7 +76,6 @@ async function main() {
 
         app.use("/", routes)
         app.use(express.static("./images"))
-        app.use((req, res) => res.status(404).json({ status: 404 }))
 
         server.listen(2024, async () => {
             Louch(io)
