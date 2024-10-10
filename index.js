@@ -33,11 +33,16 @@ app.use(
 app.use(cookies())
 app.post('/logout', (req, res) => {
     req.session.token = null
-    return res.sendFile(path.join(__dirname, "build", "index.html"));
+    return res.json({status: true})
 })
 
-app.use(express.static('./ims/'))
-app.use(express.static('./build/'))
+app.use(express.static(path.join(__dirname, "ims")))
+app.use(express.static(path.join(__dirname, "build")))
+app.use(routes)
+        
+app.get("*", (req, res) => {
+         res.sendFile(path.join(__dirname, "build", "index.html"));
+      });
 async function main() {
     try {
 
@@ -74,11 +79,6 @@ async function main() {
                 return socket.emit("message", "you are not allowed to use this service!")
             }
         })
-
-        app.use("/", routes)
-        app.get("*", (req, res) => {
-                 res.sendFile(path.join(__dirname, "build", "index.html"));
-              });
 
         server.listen(2024, async () => {
             Louch(io)
