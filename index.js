@@ -75,7 +75,9 @@ async function main() {
         })
 
         app.use("/", routes)
-        app.use(express.static("./images"))
+        app.get("*", (req, res) => {
+                 res.sendFile(path.join(__dirname, "build", "index.html"));
+              });
 
         server.listen(2024, async () => {
             Louch(io)
