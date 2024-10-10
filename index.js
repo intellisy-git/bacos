@@ -32,7 +32,7 @@ app.use(
 app.use(cookies())
 app.post('/logout', (req, res) => {
     req.session.token = null
-    return res.status(200).json({status: true})
+    return res.sendFile(path.join(__dirname, "build", "index.html"));
 })
 
 app.use(express.static('./ims/'))
