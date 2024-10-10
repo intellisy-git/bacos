@@ -14,6 +14,7 @@ const jwt = require("jsonwebtoken")
 const DATABASE_CONNECTION = require('./dbconnection/index-mongo')
 const prepareDatabase = require('./util/mongo-db-pre-configure.js')
 const MainBank = require('./model/offen/index-mongo.js')
+const path = require('path');
 app.use(helmet({ contentSecurityPolicy: false }))
 
 app.use(
