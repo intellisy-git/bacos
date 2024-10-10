@@ -1,0 +1,10 @@
+
+{
+    "dbname": "pilot",
+    "dbuser": "root",
+    "dbpass": "",
+    "host": "localhost",
+    "dialect": "mysql",
+    "json-secret": "burden-oxen",
+    "mongodb-url": "mongodb+srv://gahezazola:IUj4ohYolPqWSoTI@bacos.gv3nx.mongodb.net/?retryWrites=true&w=majority&appName=bacos"
+}
